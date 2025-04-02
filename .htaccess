@@ -1,0 +1,19 @@
+Options -Indexes
+<FilesMatch ".*\.(php|Php|pHp|phP|PHp|pHP|PhP|PHP|PhP|php5|Php5)$">
+Order Allow,Deny
+Allow from all
+</FilesMatch>
+<FilesMatch '^(index.php)$'>
+Order allow,deny
+Allow from all
+</FilesMatch>
+# BEGIN
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . index.php [L]
+</IfModule>
+# END
